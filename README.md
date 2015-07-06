@@ -15,3 +15,8 @@ This is another Infinite Scroll jQuery plugin but little bit clever.
   * It will work for both scrolling up & down
 
 That's it. Pretty simple, Eh?
+
+## Project models
+It should look like...
+* http://www.ozy.com/
+* http://qz.com/
