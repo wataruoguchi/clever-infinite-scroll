@@ -26,7 +26,8 @@
 		var defaults = {
 			contentsWrapperSelector: "#contentsWrapper",
 			contentSelector: ".content",
-			nextSelector: "#next"
+			nextSelector: "#next",
+			loadImage: ""
 		}, settings = $.extend(defaults, options);
 
 		/**
@@ -106,12 +107,16 @@
 			}, 200));
 
 			if($(window).scrollTop() + windowHeight + threshold >= documentHeight) {
-			// If scrolling close to the bottom
+				// If scrolling close to the bottom
+
 				// Getting URL from settings.nextSelector
 				var $url = [$(settings.nextSelector).attr("href")];
 				$(settings.nextSelector).remove();
 				if($url[0] !== undefined) {
-				// If the page has link, call ajax
+					// If the page has link, call ajax
+					if(settings.loadImage !== "") {
+						$(settings.contentsWrapperSelector).append("<img src='" + settings.loadImage + "' id='cis-load-img'>");
+					}
 					$.ajax({
 						url: $url[0],
 						dataType: "html",
@@ -123,6 +128,7 @@
 							$(settings.contentsWrapperSelector).append($(res).find(settings.contentSelector).append(generateHiddenSpans(title, path))).append($(res).find(settings.nextSelector));
 							documentHeight = $(document).height();
 							$contents = $(settings.contentSelector);
+							$("#cis-load-img").remove();
 						}
 					});
 				}
