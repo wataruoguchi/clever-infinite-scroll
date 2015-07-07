@@ -1,5 +1,5 @@
-# Clever Infinite Scroll
-This is another Infinite Scroll jQuery plugin but little bit clever. - [LIVE DEMO](http://wataruoguchi.com/LAB/infiniteScroll/)
+# Clever Infinite Scroll - [[LIVE DEMO]](http://wataruoguchi.com/LAB/infiniteScroll/)
+This is another Infinite Scroll jQuery plugin but little bit clever.
 * I haven't tested it properly yet
 * Please implement it in page footer or something common element
 * It is super simple, it might work in Wordpress or other CMSs
