@@ -32,20 +32,20 @@
 		/**
 		 * Private methods
 		*/
-		var generateHiddenSpans = function(title, path) {
-			return "<span class='hidden-title' style='display:none'>" + title + "</span><span class='hidden-url' style='display:none'>" + path + "</span>";
+		var generateHiddenSpans = function(_title, _path) {
+			return "<span class='hidden-title' style='display:none'>" + _title + "</span><span class='hidden-url' style='display:none'>" + _path + "</span>";
 		},
-		setTitleAndHistory = function(title, path) {
-			// Set title
-			$("title").html(title);
+		setTitleAndHistory = function(_title, _path) {
 			// Set history
-			history.pushState(null, title, path);
+			history.pushState(null, _title, _path);
+			// Set title
+			$("title").html(_title);
 		},
-		changeTitleAndURL = function(value) {
+		changeTitleAndURL = function(_value) {
 			// value is an element of a content user is seeing
 			// Get title and path of the article page from hidden span elements
-			var title = $(value).children(".hidden-title:first").text(),
-				path = $(value).children(".hidden-url:first").text();
+			var title = $(_value).children(".hidden-title:first").text(),
+				path = $(_value).children(".hidden-url:first").text();
 			if($("title").text() !== title) {
 				// If it has changed
 				setTitleAndHistory(title, path);
@@ -57,7 +57,11 @@
 		*/
 		// Get current page's title and URL.
 		var title = $("title").text(),
-			path = $(location).attr("href");
+			path = $(location).attr("href"),
+			documentHeight = $(document).height(),
+			windowHeight = (typeof window.outerHeight !== "undefined") ? Math.max(window.outerHeight, $(window).height()) : $(window).height(),
+			threshold = windowHeight,
+			$contents = $(settings.contentSelector);
 		// Set hidden span elements and history
 		$(settings.contentSelector + ":last").append(generateHiddenSpans(title, path));
 		setTitleAndHistory(title, path);
@@ -65,12 +69,11 @@
 		/**
 		 * scroll
 		*/
-		var $contents, lastScroll = 0, currentScroll;
+		var lastScroll = 0, currentScroll;
 		$(window).scroll(function() {
-			// Detect where you are every 200ms
+			// Detect where you are
 			window.clearTimeout($.data("this", "scrollTimer"));
 			$.data(this, "scrollTimer", window.setTimeout(function() {
-				$contents = $(settings.contentSelector);
 				// Get current scroll position
 				currentScroll = $(window).scrollTop();
 
@@ -78,7 +81,7 @@
 				if(currentScroll > lastScroll) {
 					// If it's scrolling down
 					$contents.each(function(key, value) {
-						if($(value).offset().top > $(window).scrollTop()) {
+						if($(value).offset().top + $(value).height() > currentScroll) {
 							// Change title and URL
 							changeTitleAndURL(value);
 							// Quit each loop
@@ -88,7 +91,7 @@
 				} else if(currentScroll < lastScroll) {
 					// If it's scrolling up
 					$contents.each(function(key, value) {
-						if($(value).offset().top + $(value).height() > $(window).scrollTop()) {
+						if($(value).offset().top + $(value).height() - windowHeight / 2 > currentScroll) {
 							// Change title and URL
 							changeTitleAndURL(value);
 							// Quit each loop
@@ -102,8 +105,8 @@
 				lastScroll = currentScroll;
 			}, 200));
 
-			if($(window).scrollTop() + $(window).height() === $(document).height()) {
-			// If scrolling hit the bottom
+			if($(window).scrollTop() + windowHeight + threshold >= documentHeight) {
+			// If scrolling close to the bottom
 				// Getting URL from settings.nextSelector
 				var $url = [$(settings.nextSelector).attr("href")];
 				$(settings.nextSelector).remove();
@@ -118,7 +121,8 @@
 							path = $url[0];
 							// Set hidden span elements and history
 							$(settings.contentsWrapperSelector).append($(res).find(settings.contentSelector).append(generateHiddenSpans(title, path))).append($(res).find(settings.nextSelector));
-							setTitleAndHistory(title, path);
+							documentHeight = $(document).height();
+							$contents = $(settings.contentSelector);
 						}
 					});
 				}
