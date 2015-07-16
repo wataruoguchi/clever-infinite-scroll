@@ -19,7 +19,7 @@
 	 * The structure must be same as article1.html
 	 * #contentsWrapper, .content, #next
 	*/
-	$.fn.cleverInfiteScroll = function(options) {
+	$.fn.cleverInfiniteScroll = function(options) {
 		/**
 		 * Settings
 		*/
@@ -140,5 +140,5 @@
 		}); //scroll
 
 		return (this);
-	}; //$.fn.cleverInfiteScroll
+	}; //$.fn.cleverInfiniteScroll
 });
