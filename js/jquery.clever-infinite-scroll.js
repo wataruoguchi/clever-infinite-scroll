@@ -125,7 +125,11 @@
 							title = $(res).filter("title").text();
 							path = $url[0];
 							// Set hidden span elements and history
-							$(settings.contentsWrapperSelector).append($(res).find(settings.contentSelector).append(generateHiddenSpans(title, path))).append($(res).find(settings.nextSelector));
+							$(settings.contentsWrapperSelector).append($(res).find(settings.contentSelector).append(generateHiddenSpans(title, path)));
+							if($(res).find(settings.contentSelector).find(settings.nextSelector).length === 0){
+								//If there is no nextSelector in the contentSelector, get next Slecter from response and append it.
+								$(settings.contentsWrapperSelector).append($(res).find(settings.nextSelector));
+							}
 							documentHeight = $(document).height();
 							$contents = $(settings.contentSelector);
 							$("#cis-load-img").remove();
