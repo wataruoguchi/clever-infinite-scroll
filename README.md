@@ -20,3 +20,6 @@ That's it. Pretty simple, Eh?
 It should look like...
 * http://www.ozy.com/
 * http://qz.com/
+
+## Outcomes
+* http://gastowngazette.com/ (article page)
