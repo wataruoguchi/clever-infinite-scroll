@@ -23,11 +23,13 @@
 		/**
 		 * Settings
 		*/
-		var defaults = {
+		var windowHeight = (typeof window.outerHeight !== "undefined") ? Math.max(window.outerHeight, $(window).height()) : $(window).height(),
+		defaults = {
 			contentsWrapperSelector: "#contentsWrapper",
 			contentSelector: ".content",
 			nextSelector: "#next",
-			loadImage: ""
+			loadImage: "",
+			offset: windowHeight,
 		}, settings = $.extend(defaults, options);
 
 		/**
@@ -62,8 +64,7 @@
 		var title = $("title").text(),
 			path = $(location).attr("href"),
 			documentHeight = $(document).height(),
-			windowHeight = (typeof window.outerHeight !== "undefined") ? Math.max(window.outerHeight, $(window).height()) : $(window).height(),
-			threshold = windowHeight,
+			threshold = settings.offset,
 			$contents = $(settings.contentSelector);
 		// Set hidden span elements and history
 		$(settings.contentSelector + ":last").append(generateHiddenSpans(title, path));

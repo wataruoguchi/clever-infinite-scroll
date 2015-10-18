@@ -13,6 +13,7 @@ This is another Infinite Scroll jQuery plugin but little bit clever.
   * The URL and page title will be changed automatically
   * It leaves History that which contents you have seen in your browser
   * It will work for both scrolling up & down
+  * By `offset` option, you can set the offset distance for fetching next page. Default is window's height
 
 That's it. Pretty simple, Eh?
 
