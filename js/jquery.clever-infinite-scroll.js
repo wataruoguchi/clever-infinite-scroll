@@ -49,6 +49,8 @@
 				path = $(_value).children(".hidden-url:first").text();
 			if($("title").text() !== title) {
 				// If it has changed
+				$(settings.contentSelector).removeClass("active");
+				$(_value).addClass("active");
 				setTitleAndHistory(title, path);
 			}
 		};
@@ -65,6 +67,7 @@
 			$contents = $(settings.contentSelector);
 		// Set hidden span elements and history
 		$(settings.contentSelector + ":last").append(generateHiddenSpans(title, path));
+		$(settings.contentSelector).addClass("active");
 		setTitleAndHistory(title, path);
 
 		/**
