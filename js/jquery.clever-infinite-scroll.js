@@ -68,7 +68,7 @@
 			$contents = $(settings.contentSelector);
 		// Set hidden span elements and history
 		$(settings.contentSelector + ":last").append(generateHiddenSpans(title, path));
-		$(settings.contentSelector).addClass("active");
+		$(settings.contentSelector + ":first").addClass("active");
 		setTitleAndHistory(title, path);
 
 		/**
