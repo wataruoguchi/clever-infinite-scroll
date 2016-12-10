@@ -1,4 +1,4 @@
-# Clever Infinite Scroll - [[LIVE DEMO]](http://wataruoguchi.com/LAB/infiniteScroll/)
+# Clever Infinite Scroll
 This is another Infinite Scroll jQuery plugin but little bit clever.
 * Please implement it in page footer or something common element
 * It is super simple, it might work in Wordpress and other CMSs
@@ -23,3 +23,6 @@ It should look like...
 
 ## Outcomes
 * https://gazettemag.com/ (article page)
+
+## Users (Thanks!)
+* http://news.abs-cbn.com/ (article page)
