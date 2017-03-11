@@ -1,6 +1,9 @@
 /**
  * jquery.clever-infinite-scroll.js
  * Working with jQuery 2.1.4
+ *
+ * Twitter: @watarutwt
+ * GitHub: @wataruoguchi
  */
 /* global define, require, history, window, document, location  */
 (function(root, factory) {
