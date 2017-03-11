@@ -44,7 +44,7 @@
       },
       setTitleAndHistory = function(_title, _path) {
         // Set history
-        history.pushState(null, _title, _path);
+        history.replaceState(null, _title, _path);
         // Set title
         $("title").html(_title);
       },
