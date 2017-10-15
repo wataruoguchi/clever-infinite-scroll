@@ -142,6 +142,7 @@
               documentHeight = $(document).height();
               $contents = $(settings.contentSelector);
               $("#cis-load-img").remove();
+              $(document).trigger('cleaver-infinite-scroll-content-loaded');
             }
           });
         }
