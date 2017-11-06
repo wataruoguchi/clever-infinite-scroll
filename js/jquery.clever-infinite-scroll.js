@@ -58,6 +58,7 @@
           $(settings.contentSelector).removeClass("active");
           $(_value).addClass("active");
           setTitleAndHistory(title, path);
+          $(document).trigger('clever-infinite-scroll-url-change', [title, path]);
         }
       };
 
