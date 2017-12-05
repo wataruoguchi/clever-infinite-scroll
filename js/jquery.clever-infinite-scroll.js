@@ -58,6 +58,7 @@
           $(settings.contentSelector).removeClass("active");
           $(_value).addClass("active");
           setTitleAndHistory(title, path);
+          $(document).trigger('clever-infinite-scroll-url-change', [title, path]);
         }
       };
 
@@ -142,7 +143,7 @@
               documentHeight = $(document).height();
               $contents = $(settings.contentSelector);
               $("#cis-load-img").remove();
-              $(document).trigger('cleaver-infinite-scroll-content-loaded');
+              $(document).trigger('clever-infinite-scroll-content-loaded');
             }
           });
         }
